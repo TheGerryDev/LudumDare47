@@ -1,0 +1,27 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+public class JumpComponent : MonoBehaviour
+{
+    public float power;
+    private Rigidbody2D _rigidbody2D;
+
+    private void Start()
+    {
+        _rigidbody2D = GetComponent<Rigidbody2D>();
+    }
+
+    private void Update()
+    {
+        if (_rigidbody2D.velocity.y >= 0f) return;
+        EventHandler.OnEntityFall(gameObject);
+    }
+
+    void OnJump(InputValue val)
+    {
+        EventHandler.OnEntityJump(gameObject, val.Get<float>(), power);
+    }
+}

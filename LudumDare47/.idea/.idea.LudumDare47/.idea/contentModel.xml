@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\Gerry\.Rider2019.2\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Gerry\.Rider2019.2\system\resharper-host\local\Transient\ReSharperHost\v192\SolutionCaches\_LudumDare47.-227075385.00" t="ExcludeRecursive" />
+    <e p="D:\Unity\LudumDare47\LudumDare47" t="IncludeRecursive">
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="Scrips" t="Include">
+          <e p="EntityStateHandlerComponent.cs" t="Include" />
+          <e p="EntityStates" t="Include">
+            <e p="EntityStateBase.cs" t="Include" />
+            <e p="EntityStateFall.cs" t="Include" />
+            <e p="EntityStateJump.cs" t="Include" />
+            <e p="EntityStateWalk.cs" t="Include" />
+          </e>
+          <e p="EventHandler.cs" t="Include" />
+          <e p="JumpComponent.cs" t="Include" />
+          <e p="MovingComponent.cs" t="Include" />
+          <e p="ScreenBorderHandlerComponent.cs" t="Include" />
+          <e p="SetFramerate.cs" t="Include" />
+        </e>
+      </e>
+      <e p="LudumDare47.sln" t="IncludeFlat" />
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="Packages" t="ExcludeRecursive" />
+      <e p="Temp\Bin" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>
