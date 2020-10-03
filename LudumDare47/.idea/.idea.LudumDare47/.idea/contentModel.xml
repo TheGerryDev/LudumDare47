@@ -9,6 +9,7 @@
         <e p="Scrips" t="Include">
           <e p="CollidingState.cs" t="Include" />
           <e p="DestroyOnGroundCollision.cs" t="Include" />
+          <e p="EnemyDamageHandler.cs" t="Include" />
           <e p="EntityMover.cs" t="Include" />
           <e p="EntityStateHandlerComponent.cs" t="Include" />
           <e p="EntityStates" t="Include">
@@ -23,9 +24,11 @@
           <e p="JumpComponent.cs" t="Include" />
           <e p="MapChanger.cs" t="Include" />
           <e p="MovingComponent.cs" t="Include" />
+          <e p="PlayerLivesHandler.cs" t="Include" />
           <e p="RotateObjectComponent.cs" t="Include" />
           <e p="ScreenBorderHandlerComponent.cs" t="Include" />
           <e p="SetFramerate.cs" t="Include" />
+          <e p="TriggerState.cs" t="Include" />
         </e>
       </e>
       <e p="LudumDare47.sln" t="IncludeFlat" />

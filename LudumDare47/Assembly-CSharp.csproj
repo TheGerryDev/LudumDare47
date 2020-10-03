@@ -67,8 +67,11 @@
      <Compile Include="Assets\Scrips\EventHandler.cs" />
      <Compile Include="Assets\Scrips\MapChanger.cs" />
      <Compile Include="Assets\Scrips\EntityStateHandlerComponent.cs" />
-     <Compile Include="Assets\Scrips\EntityStates\EntityStateBase.cs" />
      <Compile Include="Assets\Scrips\EntityMover.cs" />
+     <Compile Include="Assets\Scrips\EntityStates\EntityStateBase.cs" />
+     <Compile Include="Assets\Scrips\PlayerLivesHandler.cs" />
+     <Compile Include="Assets\Scrips\EnemyDamageHandler.cs" />
+     <Compile Include="Assets\Scrips\TriggerState.cs" />
  <Reference Include="UnityEngine">
  <HintPath>D:/Unity/2020.2.0b2/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
  </Reference>

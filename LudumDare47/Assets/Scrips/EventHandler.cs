@@ -40,4 +40,10 @@ public class EventHandler
     {
         EntityChangeDirection?.Invoke(obj);
     }
+
+    public static event Action ReducePlayerLives;
+    public static void OnReducePlayerLives()
+    {
+        ReducePlayerLives?.Invoke();
+    }
 }

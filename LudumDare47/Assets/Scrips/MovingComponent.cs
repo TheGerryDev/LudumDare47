@@ -47,32 +47,32 @@ public class MovingComponent : MonoBehaviour
         //EventHandler.OnEntityMove(gameObject, _val, speed);
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnTriggerEnter2D(Collider2D other1)
     {
         foreach (Transform child in gameObject.transform)
         {
-            if (child.gameObject.tag.Contains("LeftWallCollider") && child.gameObject.GetComponent<CollidingState>().isColliding)
+            if (child.gameObject.tag.Contains("LeftWallCollider") && child.gameObject.GetComponent<TriggerState>().isColliding)
             {
                 _isCollidingWithLeftWall = true;
             }
             
-            if (child.gameObject.tag.Contains("RightWallCollider") && child.gameObject.GetComponent<CollidingState>().isColliding)
+            if (child.gameObject.tag.Contains("RightWallCollider") && child.gameObject.GetComponent<TriggerState>().isColliding)
             {
                 _isCollidingWithRightWall = true;
             }
         }
     }
 
-    private void OnCollisionExit2D(Collision2D other)
+    private void OnTriggerExit2D(Collider2D other1)
     {
         foreach (Transform child in gameObject.transform)
         {
-            if (child.gameObject.tag.Contains("LeftWallCollider") && !child.gameObject.GetComponent<CollidingState>().isColliding)
+            if (child.gameObject.tag.Contains("LeftWallCollider") && !child.gameObject.GetComponent<TriggerState>().isColliding)
             {
                 _isCollidingWithLeftWall = false;
             }
             
-            if (child.gameObject.tag.Contains("RightWallCollider") && !child.gameObject.GetComponent<CollidingState>().isColliding)
+            if (child.gameObject.tag.Contains("RightWallCollider") && !child.gameObject.GetComponent<TriggerState>().isColliding)
             {
                 _isCollidingWithRightWall = false;
             }
