@@ -19,4 +19,8 @@ public class EntityStateBase
     public virtual void OnCollisionExit(GameObject gameObject, Collision2D other)
     {
     }
+
+    public virtual void OnTriggerStay(GameObject gameObject)
+    {
+    }
 }

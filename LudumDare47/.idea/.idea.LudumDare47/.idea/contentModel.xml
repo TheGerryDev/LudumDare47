@@ -7,6 +7,7 @@
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
         <e p="Scrips" t="Include">
+          <e p="CollidingState.cs" t="Include" />
           <e p="EntityStateHandlerComponent.cs" t="Include" />
           <e p="EntityStates" t="Include">
             <e p="EntityStateBase.cs" t="Include" />

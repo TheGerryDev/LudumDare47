@@ -16,23 +16,19 @@ public class JumpComponent : MonoBehaviour
         _rigidbody2D = GetComponent<Rigidbody2D>();
     }
 
-//    private void Update()
-//    {
-//        if (_rigidbody2D.velocity.y < 0f)
-//        {
-//            EventHandler.OnEntityFall(gameObject);
-//        }
-//        else if (_val > 0f)
-//        {
-//            EventHandler.OnEntityJump(gameObject, _val, power);
-//            _val = 0f;
-//        }
-//        
-//    }
+    private void Update()
+    {
+        if (Math.Abs(_val) > 0f)
+        {
+            EventHandler.OnEntitySetupJump(gameObject, _val, power);
+            _val = 0f;
+        }
+        
+    }
 
     void OnJump(InputValue val)
     {
         _val = val.Get<float>();
-        EventHandler.OnEntitySetupJump(gameObject, _val, power);
+        //EventHandler.OnEntitySetupJump(gameObject, _val, power);
     }
 }

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static EventHandler;
 
 public enum EntityState
 {
@@ -21,18 +22,18 @@ public class EntityStateHandlerComponent : MonoBehaviour
 
     private float _inputValue;
     private float _actionValue;
-    public bool _isColliding;
+    public bool isCollidingWithGround;
 
     public bool cannotJump = false;
     
     // Start is called before the first frame update
     void Start()
     {
-        EventHandler.EntityIdle += OnEntityIdle;
-        EventHandler.EntityMove += OnEntityMove;
-        EventHandler.EntitySetupJump += OnEntitySetupJump;
-        EventHandler.EntityFall += OnEntityFall;
-        EventHandler.EntityJumping += OnEntityJumping;
+        EntityIdle += OnEntityIdle;
+        EntityMove += OnEntityMove;
+        EntitySetupJump += OnEntitySetupJump;
+        EntityFall += OnEntityFall;
+        EntityJumping += OnEntityJumping;
         
         _stateClassDict = new Dictionary<EntityState, EntityStateBase>()
         {
@@ -99,34 +100,53 @@ public class EntityStateHandlerComponent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _rb.velocity = _stateClassDict[state].Execute(gameObject, _rb, _inputValue, _actionValue);
-
+        
         // Automatic state changes
-        if (_rb.velocity.y < 0f) 
-            EventHandler.OnEntityFall(gameObject);
-        if ((state == EntityState.Fall && _isColliding) || _rb.velocity == Vector2.zero) 
-            EventHandler.OnEntityIdle(gameObject);
-        if (state == EntityState.SetupJump)
-            state = EntityState.Jumping;
+        if (_rb.velocity.y < 0f) EventHandler.OnEntityFall(gameObject);
+        //if ((state == EntityState.Fall && _rb.velocity.y >= 0f)) EventHandler.OnEntityIdle(gameObject);
+        
+        _rb.velocity = _stateClassDict[state].Execute(gameObject, _rb, _inputValue, _actionValue);
+        
+        if (_rb.velocity == Vector2.zero && isCollidingWithGround) EventHandler.OnEntityIdle(gameObject);
+        if (state == EntityState.SetupJump) state = EntityState.Jumping;
+        //if (cannotJump && _isColliding && state != EntityState.Idle) _rb.velocity = new Vector2(0f, _rb.velocity.y);
     }
     
     private void OnCollisionEnter2D(Collision2D other)
     {
-        _isColliding = true;
+        foreach (Transform child in gameObject.transform)
+        {
+            if (child.gameObject.tag.Contains("GroundCollider") && child.gameObject.GetComponent<CollidingState>().isColliding)
+            {
+                isCollidingWithGround = true;
+            }
+        }
         _stateClassDict[state].OnCollision(gameObject, other);
     }
 
     private void OnCollisionExit2D(Collision2D other)
     {
-        _isColliding = false;
+        foreach (Transform child in gameObject.transform)
+        {
+            if (child.gameObject.tag.Contains("GroundCollider") && !child.gameObject.GetComponent<CollidingState>().isColliding)
+            {
+                isCollidingWithGround = false;
+            }
+        }
         _stateClassDict[state].OnCollisionExit(gameObject, other);
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        _stateClassDict[state].OnTriggerStay(gameObject);
     }
 
     private void OnDestroy()
     {
-        EventHandler.EntityIdle -= OnEntityIdle;
-        EventHandler.EntityMove -= OnEntityMove;
-        EventHandler.EntitySetupJump -= OnEntitySetupJump;
-        EventHandler.EntityFall -= OnEntityFall;
+        EntityIdle -= OnEntityIdle;
+        EntityMove -= OnEntityMove;
+        EntitySetupJump -= OnEntitySetupJump;
+        EntityFall -= OnEntityFall;
+        EntityJumping -= OnEntityJumping;
     }
 }
