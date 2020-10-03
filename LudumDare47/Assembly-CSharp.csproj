@@ -62,10 +62,13 @@
      <Compile Include="Assets\Scrips\EntityStates\EntityStateWalk.cs" />
      <Compile Include="Assets\Scrips\JumpComponent.cs" />
      <Compile Include="Assets\Scrips\MovingComponent.cs" />
+     <Compile Include="Assets\Scrips\DestroyOnGroundCollision.cs" />
      <Compile Include="Assets\Scrips\ScreenBorderHandlerComponent.cs" />
      <Compile Include="Assets\Scrips\EventHandler.cs" />
+     <Compile Include="Assets\Scrips\MapChanger.cs" />
      <Compile Include="Assets\Scrips\EntityStateHandlerComponent.cs" />
      <Compile Include="Assets\Scrips\EntityStates\EntityStateBase.cs" />
+     <Compile Include="Assets\Scrips\EntityMover.cs" />
  <Reference Include="UnityEngine">
  <HintPath>D:/Unity/2020.2.0b2/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
  </Reference>

@@ -8,6 +8,8 @@
       <e p="Assets" t="Include">
         <e p="Scrips" t="Include">
           <e p="CollidingState.cs" t="Include" />
+          <e p="DestroyOnGroundCollision.cs" t="Include" />
+          <e p="EntityMover.cs" t="Include" />
           <e p="EntityStateHandlerComponent.cs" t="Include" />
           <e p="EntityStates" t="Include">
             <e p="EntityStateBase.cs" t="Include" />
@@ -19,6 +21,7 @@
           </e>
           <e p="EventHandler.cs" t="Include" />
           <e p="JumpComponent.cs" t="Include" />
+          <e p="MapChanger.cs" t="Include" />
           <e p="MovingComponent.cs" t="Include" />
           <e p="RotateObjectComponent.cs" t="Include" />
           <e p="ScreenBorderHandlerComponent.cs" t="Include" />

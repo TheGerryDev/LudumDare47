@@ -34,4 +34,10 @@ public class EventHandler
     {
         EntityJumping?.Invoke(obj);
     }
+
+    public static event Action<GameObject> EntityChangeDirection;
+    public static void OnEntityChangeDirection(GameObject obj)
+    {
+        EntityChangeDirection?.Invoke(obj);
+    }
 }
