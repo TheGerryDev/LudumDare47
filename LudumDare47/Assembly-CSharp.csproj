@@ -52,16 +52,19 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scrips\MovingComponent.cs" />
-     <Compile Include="Assets\Scrips\JumpComponent.cs" />
-     <Compile Include="Assets\Scrips\EntityStateHandlerComponent.cs" />
-     <Compile Include="Assets\Scrips\EventHandler.cs" />
-     <Compile Include="Assets\Scrips\EntityStates\EntityStateBase.cs" />
-     <Compile Include="Assets\Scrips\EntityStates\EntityStateWalk.cs" />
+     <Compile Include="Assets\Scrips\EntityStates\EntityStateSetupJump.cs" />
      <Compile Include="Assets\Scrips\SetFramerate.cs" />
-     <Compile Include="Assets\Scrips\ScreenBorderHandlerComponent.cs" />
-     <Compile Include="Assets\Scrips\EntityStates\EntityStateJump.cs" />
      <Compile Include="Assets\Scrips\EntityStates\EntityStateFall.cs" />
+     <Compile Include="Assets\Scrips\EntityStates\EntityStateWalk.cs" />
+     <Compile Include="Assets\Scrips\JumpComponent.cs" />
+     <Compile Include="Assets\Scrips\MovingComponent.cs" />
+     <Compile Include="Assets\Scrips\ScreenBorderHandlerComponent.cs" />
+     <Compile Include="Assets\Scrips\EventHandler.cs" />
+     <Compile Include="Assets\Scrips\EntityStateHandlerComponent.cs" />
+     <Compile Include="Assets\Scrips\EntityStates\EntityStateBase.cs" />
+     <Compile Include="Assets\Scrips\EntityStates\EntityStateJumping.cs" />
+     <Compile Include="Assets\Scrips\EntityStates\EntityStateIdle.cs" />
+     <Compile Include="Assets\Scrips\RotateObjectComponent.cs" />
  <Reference Include="UnityEngine">
  <HintPath>D:/Unity/2020.2.0b2/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
  </Reference>

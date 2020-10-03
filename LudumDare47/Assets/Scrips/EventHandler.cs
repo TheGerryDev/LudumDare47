@@ -17,15 +17,21 @@ public class EventHandler
         EntityMove?.Invoke(arg1, arg2, arg3);
     }
     
-    public static event Action<GameObject, float, float> EntityJump;
-    public static void OnEntityJump(GameObject arg1, float arg2, float arg3)
+    public static event Action<GameObject, float, float> EntitySetupJump;
+    public static void OnEntitySetupJump(GameObject arg1, float arg2, float arg3)
     {
-        EntityJump?.Invoke(arg1, arg2, arg3);
+        EntitySetupJump?.Invoke(arg1, arg2, arg3);
     }
 
     public static event Action<GameObject> EntityFall;
     public static void OnEntityFall(GameObject obj)
     {
         EntityFall?.Invoke(obj);
+    }
+    
+    public static event Action<GameObject> EntityJumping;
+    public static void OnEntityJumping(GameObject obj)
+    {
+        EntityJumping?.Invoke(obj);
     }
 }

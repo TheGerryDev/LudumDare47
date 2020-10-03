@@ -7,8 +7,9 @@ public class EntityStateBase
         
     }
     
-    public virtual void Execute(GameObject gameObject, Rigidbody2D rb, float inputValue, float actionValue)
+    public virtual Vector2 Execute(GameObject gameObject, Rigidbody2D rb, float inputValue, float actionValue)
     {
+        return rb.velocity;
     }
 
     public virtual void OnCollision(GameObject gameObject, Collision2D other)

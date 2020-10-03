@@ -14,28 +14,8 @@ public class EntityStateWalk : EntityStateBase
         _isColliding = false;
     }
 
-    public override void Execute(GameObject gameObject, Rigidbody2D rb, float inputValue, float actionValue)
+    public override Vector2 Execute(GameObject gameObject, Rigidbody2D rb, float inputValue, float actionValue)
     {
-        //if (!_isColliding)
-        {
-            rb.velocity = new UnityEngine.Vector2(actionValue * inputValue * Time.deltaTime, rb.velocity.y);
-        }
-
-        if (rb.velocity == Vector2.zero)
-        {
-            EventHandler.OnEntityIdle(gameObject);
-        }
-    }
-
-    public override void OnCollision(GameObject gameObject, Collision2D other)
-    {
-        base.OnCollision(gameObject, other);
-        //_isColliding = true;
-    }
-
-    public override void OnCollisionExit(GameObject gameObject, Collision2D other)
-    {
-        //_isColliding = false;
-        EventHandler.OnEntityFall(gameObject);
+        return new Vector2(actionValue * inputValue * Time.deltaTime, rb.velocity.y);
     }
 }

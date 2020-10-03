@@ -7,7 +7,8 @@ public enum EntityState
 {
     Idle,
     Walk,
-    Jump,
+    SetupJump,
+    Jumping,
     Fall,
 }
 
@@ -20,6 +21,7 @@ public class EntityStateHandlerComponent : MonoBehaviour
 
     private float _inputValue;
     private float _actionValue;
+    public bool _isColliding;
 
     public bool cannotJump = false;
     
@@ -28,15 +30,17 @@ public class EntityStateHandlerComponent : MonoBehaviour
     {
         EventHandler.EntityIdle += OnEntityIdle;
         EventHandler.EntityMove += OnEntityMove;
-        EventHandler.EntityJump += OnEntityJump;
+        EventHandler.EntitySetupJump += OnEntitySetupJump;
         EventHandler.EntityFall += OnEntityFall;
+        EventHandler.EntityJumping += OnEntityJumping;
         
         _stateClassDict = new Dictionary<EntityState, EntityStateBase>()
         {
             {EntityState.Idle, new EntityStateBase()},
             {EntityState.Walk, new EntityStateWalk()},
-            {EntityState.Jump, new EntityStateJump()},
-            {EntityState.Fall, new EntityStateFall()}
+            {EntityState.SetupJump, new EntityStateSetupJump()},
+            {EntityState.Fall, new EntityStateFall()},
+            {EntityState.Jumping, new EntityStateJumping()}
         };
         
         state = EntityState.Idle;
@@ -64,50 +68,65 @@ public class EntityStateHandlerComponent : MonoBehaviour
         _stateClassDict[state].Setup();
     }
     
-    private void OnEntityJump(GameObject arg1, float arg2, float arg3)
+    private void OnEntitySetupJump(GameObject arg1, float arg2, float arg3)
     {
-        if (gameObject != arg1 || cannotJump || state == EntityState.Fall) return;
+        if (gameObject != arg1 || cannotJump) return;
+        cannotJump = true;
 
-        state = EntityState.Jump;
+        state = EntityState.SetupJump;
         _inputValue = arg2;
         _actionValue = arg3;
-        cannotJump = true;
         _stateClassDict[state].Setup();
     }
     
     private void OnEntityFall(GameObject obj)
     {
-        if (gameObject != obj) return;
+        if (gameObject != obj || state == EntityState.Fall) return;
+        cannotJump = true;
 
         state = EntityState.Fall;
-        _inputValue = 0f;
-        _actionValue = 0f;
-        cannotJump = true;
+        //_inputValue = 0f;
+        //_actionValue = 0f;
+        _stateClassDict[state].Setup();
+    }
+    
+    private void OnEntityJumping(GameObject obj)
+    {
+        state = EntityState.Jumping;
         _stateClassDict[state].Setup();
     }
 
     // Update is called once per frame
     void Update()
     {
-        _stateClassDict[state].Execute(gameObject, _rb, _inputValue, _actionValue);
-        
+        _rb.velocity = _stateClassDict[state].Execute(gameObject, _rb, _inputValue, _actionValue);
+
+        // Automatic state changes
+        if (_rb.velocity.y < 0f) 
+            EventHandler.OnEntityFall(gameObject);
+        if ((state == EntityState.Fall && _isColliding) || _rb.velocity == Vector2.zero) 
+            EventHandler.OnEntityIdle(gameObject);
+        if (state == EntityState.SetupJump)
+            state = EntityState.Jumping;
+    }
+    
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        _isColliding = true;
+        _stateClassDict[state].OnCollision(gameObject, other);
+    }
+
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        _isColliding = false;
+        _stateClassDict[state].OnCollisionExit(gameObject, other);
     }
 
     private void OnDestroy()
     {
         EventHandler.EntityIdle -= OnEntityIdle;
         EventHandler.EntityMove -= OnEntityMove;
-        EventHandler.EntityJump -= OnEntityJump;
+        EventHandler.EntitySetupJump -= OnEntitySetupJump;
         EventHandler.EntityFall -= OnEntityFall;
-    }
-
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        _stateClassDict[state].OnCollision(gameObject, other);
-    }
-
-    private void OnCollisionExit2D(Collision2D other)
-    {
-        _stateClassDict[state].OnCollisionExit(gameObject, other);
     }
 }

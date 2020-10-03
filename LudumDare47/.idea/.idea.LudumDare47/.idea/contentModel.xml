@@ -11,12 +11,15 @@
           <e p="EntityStates" t="Include">
             <e p="EntityStateBase.cs" t="Include" />
             <e p="EntityStateFall.cs" t="Include" />
-            <e p="EntityStateJump.cs" t="Include" />
+            <e p="EntityStateIdle.cs" t="Include" />
+            <e p="EntityStateJumping.cs" t="Include" />
+            <e p="EntityStateSetupJump.cs" t="Include" />
             <e p="EntityStateWalk.cs" t="Include" />
           </e>
           <e p="EventHandler.cs" t="Include" />
           <e p="JumpComponent.cs" t="Include" />
           <e p="MovingComponent.cs" t="Include" />
+          <e p="RotateObjectComponent.cs" t="Include" />
           <e p="ScreenBorderHandlerComponent.cs" t="Include" />
           <e p="SetFramerate.cs" t="Include" />
         </e>
